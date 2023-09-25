@@ -1,4 +1,4 @@
-import { data } from "./data/mock_data.js";
+import { data } from "./data/data.js";
 import React, { useState, useEffect } from "react";
 
 import Pagination from "@mui/material/Pagination";
@@ -19,7 +19,13 @@ function App() {
     console.log(`Change to page ${event.target.innerText}`);
   };
   useEffect(() => {
-    setDisplayData(data.slice((page - 1) * 5, page * 5));
+    const jobsPerPage = 5;
+
+    // Slice the jobs based on the requested page
+    const startIndex = (page - 1) * jobsPerPage;
+    const endIndex = startIndex + jobsPerPage;
+
+    setDisplayData(data.slice(startIndex, endIndex));
   }, [page]);
 
   // Handle Theme
@@ -39,7 +45,7 @@ function App() {
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center", mt: "20px" }}>
         <Pagination
-          count={Math.floor(data.length / 5)}
+          count={Math.ceil(data.length / 5)}
           color="primary"
           onClick={handlePage}
         />

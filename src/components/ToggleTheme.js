@@ -1,7 +1,8 @@
 import { React, useState } from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
+
 export default function ToggleTheme({ setTheme }) {
   const [view, setView] = useState("dark");
   const lightTheme = createTheme({
